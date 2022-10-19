@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Superior Room",
+    "id": 1,
+    "title": "38m | 2 Twin or 1 King | 2 Adults & 2 Childrens(0-11)",
+    "dsc": "Plush comforters and free Wi-Fi help you relax in our Superior Rooms with one king bed or two twin beds.",
+    "image": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+  },
+  {
+    "name": "Businesss Class Room",
+    "id": 2,
+    "title": "38m | 2 Twin or 1 King | 2 Adults & 2 Childrens(0-11)",
+    "dsc": "Enjoy spectacular views and extra perks like lounge access when you book a Business Class Room.",
+    "image": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+  },
+  {
+    "name": "Junior Suite",
+    "id": 3,
+    "title": "38m | 2 Twin or 1 King | 2 Adults & 2 Childrens(0-11)",
+    "dsc": "Spread out for a stress-free stay in a suite with a king bed, a separate living area, and upgraded amenities.",
+    "image": "https://plus.unsplash.com/premium_photo-1661505119522-22651550cd42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+  },
+  {
+    "name": "Executive Suite",
+    "id": 4,
+    "title": "38m | 2 Twin or 1 King | 2 Adults & 2 Childrens(0-11)",
+    "dsc": "Finish up paperwork or lounge in the living room of your Executive Suite with a king-size bed and a minibar. ",
+    "image": "https://images.unsplash.com/photo-1540518614846-7eded433c457?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1157&q=80"
+  },
+  {
+    "name": "Royal Suite",
+    "id": 5,
+    "title": "38m | 2 Twin or 1 King | 2 Adults & 2 Childrens(0-11)",
+    "dsc": "Relax on your own private pool deck or in the sumptuous living room of this double king-bed suite fit for royalty. ",
+    "image": "https://images.unsplash.com/photo-1571508601891-ca5e7a713859?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+  },
+  {
+    "name": "Presidential Suite",
+    "id": 6,
+    "title": "38m | 2 Twin or 1 King | 2 Adults & 2 Childrens(0-11)",
+    "dsc": "Admire skyline views from the private infinity pool and host dinner guests in this lavish two-bedroom suite. ",
+    "image": "https://images.unsplash.com/photo-1591088398332-8a7791972843?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+  }
+]
