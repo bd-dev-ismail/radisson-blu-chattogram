@@ -4,34 +4,40 @@ import app from '../../firebase/firebase.init';
 export const AuthContext = createContext();
 const auth = getAuth(app);
 const UserContext = ({children}) => {
-    const [user, setUser] = useState({name: 'akash'});
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
     //create user
     const register = (email, password) =>{
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
     //Sign in with google
     const googleSignIn = () =>{
+        setLoading(true);
         return signInWithPopup(auth, googleProvider);
     }
     //Login User
     const logIn = (email, password) =>{
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
     //LogOut 
     const logOut = ()=>{
+        setLoading(true);
         return signOut(auth)
     }
     //onauth state change
     useEffect(()=>{
         const unsubsribe = onAuthStateChanged(auth, (currentUser)=>{
             setUser(currentUser);
+            setLoading(false);
         })
         return ()=>{
             unsubsribe();
         }
     },[])
-    const authInfo = { user, register, googleSignIn, logIn, logOut };
+    const authInfo = { user,loading, register, googleSignIn, logIn, logOut };
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

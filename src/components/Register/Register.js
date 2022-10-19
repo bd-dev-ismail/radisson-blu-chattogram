@@ -1,11 +1,14 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext/UserContext';
  import { toast } from "react-toastify";
  import "react-toastify/dist/ReactToastify.css";
 const Register = () => {
     const [error, setError] = useState(null);
     const { register, googleSignIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const handalRegister = (e)=>{
         e.preventDefault();
         const form = e.target;
@@ -29,6 +32,7 @@ const Register = () => {
             toast.success("Successfully Create account", {
               autoClose: 500,
             });
+            navigate(from, {replace: true});
         })
         .catch(error => {
             console.log(error);

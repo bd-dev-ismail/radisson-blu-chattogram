@@ -5,8 +5,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const LogIn = () => {
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
     const { logIn, googleSignIn } = useContext(AuthContext);
+    const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
     const handalLogIn = (e) =>{
