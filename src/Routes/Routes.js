@@ -1,3 +1,5 @@
+import Contact from "../components/Contact/Contact";
+
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Booking } = require("../components/Booking/Booking");
 const { default: ErrorPage } = require("../components/ErrorPage/ErrorPage");
@@ -27,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/booking",
         element: <Booking></Booking>,
+      },
+      {
+        path: '/about',
+        element: <Contact></Contact>
       },
       {
         path: "/login",
