@@ -1,11 +1,19 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext/UserContext';
  import { toast } from "react-toastify";
  import "react-toastify/dist/ReactToastify.css";
 const Register = () => {
     const [error, setError] = useState(null);
-    const { register, googleSignIn } = useContext(AuthContext);
+    const {
+      register,
+      googleSignIn,
+      profileUpdate,
+      user,
+      name,
+      setName,
+      verifyEmail,
+    } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
@@ -29,21 +37,29 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             form.reset();
-            toast.success("Successfully Create account", {
-              autoClose: 500,
-            });
-            navigate(from, {replace: true});
+            toast.success("Successfully Create account", {autoClose: 500,}); 
         })
         .catch(error => {
             console.log(error);
             setError(error.message);
         })
     }
+    useEffect(()=>{
+      if(user && user.uid){
+        profileUpdate(name)
+          .then(() => {
+            console.log("updated");
+            navigate(from, { replace: true });
+          })
+          .catch((error) => console.log(error));
+      }
+    },[user, from])
     const handalGoogle = () =>{
         googleSignIn()
         .then(result =>{
             const user = result.user;
             console.log(user);
+            navigate(from, { replace: true });
             toast.success('Successfully Register With Google', {autoClose: 500});
         })
         .catch(error =>{
@@ -60,6 +76,7 @@ const Register = () => {
              <form onSubmit={handalRegister}>
                <input
                  type="text"
+                 onChange={(e)=> setName(e.target.value)}
                  className="block border border-gray-400 w-full p-3 rounded mb-4"
                  name="fullname"
                  placeholder="Full Name"

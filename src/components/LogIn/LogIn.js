@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext/UserContext';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ForgetModal from '../ForgetModal/ForgetModal';
 const LogIn = () => {
     const [error, setError] = useState(null);
     const { logIn, googleSignIn } = useContext(AuthContext);
@@ -32,6 +33,7 @@ const LogIn = () => {
           .then((result) => {
             const user = result.user;
             console.log(user);
+             navigate(from, { replace: true });
             toast.success("Successfully LogIN With Google", {
               autoClose: 500,
             });
@@ -63,11 +65,7 @@ const LogIn = () => {
                      name="password"
                      placeholder="Password"
                    />
-                   <div className="my-5">
-                     <Link className="text-start text-error">
-                       Forget password?
-                     </Link>
-                   </div>
+                   <ForgetModal/>
                    <div>
                      <p className="text-error py-3">{error}</p>
                    </div>
