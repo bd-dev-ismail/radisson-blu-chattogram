@@ -5,6 +5,7 @@ import { AuthContext } from '../context/UserContext/UserContext';
 const PrivateRotutes = ({children}) => {
     const { user, loading } = useContext(AuthContext);
     const location = useLocation();
+    console.log(loading);
     if(loading){
       return (
         <>

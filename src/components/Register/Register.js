@@ -24,7 +24,6 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         const confrimPassword = form.confirm_password.value;
-        console.log(fullname, email, password, confrimPassword);
         if (password.length < 6) {
           return setError("Atlist Password sholud be 6 Character");
         }
@@ -35,12 +34,13 @@ const Register = () => {
         register(email, password)
         .then(result =>{
             const user = result.user;
-            console.log(user);
+            console.log(user, from)
+            // profileUpdate(name)
+            navigate(from, { replace: true }); //me
             form.reset();
             toast.success("Successfully Create account", {autoClose: 500,}); 
         })
         .catch(error => {
-            console.log(error);
             setError(error.message);
         })
     }
@@ -48,22 +48,19 @@ const Register = () => {
       if(user && user.uid){
         profileUpdate(name)
           .then(() => {
-            console.log("updated");
             navigate(from, { replace: true });
           })
-          .catch((error) => console.log(error));
+          .catch((error) => toast.warning(error));
       }
     },[user, from])
     const handalGoogle = () =>{
         googleSignIn()
         .then(result =>{
             const user = result.user;
-            console.log(user);
             navigate(from, { replace: true });
             toast.success('Successfully Register With Google', {autoClose: 500});
         })
         .catch(error =>{
-            console.log(error);
             setError(error.message);
         })
     }

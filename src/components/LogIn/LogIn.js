@@ -15,16 +15,13 @@ const LogIn = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
         logIn(email, password) 
         .then(result =>{
             const user = result.user;
-            console.log(user);
             navigate(from, {replace: true})
             toast.success('Login Successful', {autoClose: 500})
         })
         .catch(error=>{
-            console.log(error.message);
             setError(error)
         })
     }
@@ -32,14 +29,12 @@ const LogIn = () => {
         googleSignIn()
           .then((result) => {
             const user = result.user;
-            console.log(user);
              navigate(from, { replace: true });
             toast.success("Successfully LogIN With Google", {
               autoClose: 500,
             });
           })
           .catch((error) => {
-            console.log(error);
             setError(error.message);
           });
 

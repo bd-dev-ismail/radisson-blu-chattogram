@@ -4,7 +4,6 @@ import hero from '../../assets/img/hero.jpg'
 import Hotel from '../Hotel/Hotel';
 const Home = () => {
     const hotels = useLoaderData();
-    console.log(hotels);
     return (
       <div>
         {/* Hero Image Area */}

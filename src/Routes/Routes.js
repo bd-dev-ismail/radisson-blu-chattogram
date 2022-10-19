@@ -32,6 +32,7 @@ const router = createBrowserRouter([
         path: "/booking",
         element: (
           <PrivateRotutes>
+
             <Booking></Booking>
           </PrivateRotutes>
         ),
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
         path: "/profile",
         element: (
           <PrivateRotutes>
+
             <Profile></Profile>
           </PrivateRotutes>
         ),
