@@ -31,14 +31,7 @@ const Home = () => {
                 M. A. Aziz Stadium and landmarks like the Circuit House in this
                 commercial capital. The hotel is just a 10-minute drive from the
                 city’s main business hub and less than 45 minutes from Shah
-                Amanat International Airport (CGP). Start each morning with our
-                complimentary Super Breakfast buffet at The Xchange, one of our
-                five on-site restaurants and bars. Our hotel boasts the city’s
-                largest pillarless event facility as well as a Business Class
-                lounge, making us the perfect choice for conferences and events
-                in Chattogram. After a busy day of meetings, unwind with a swim
-                in our circular outdoor infinity pool, a refreshing beverage
-                from the pool bar, or a therapeutic treatment at the spa.{" "}
+                Amanat International Airport (CGP).
               </p>
               <Link to="/booking">
                 <button className="btn btn-primary mt-6">Book Now</button>
@@ -62,7 +55,7 @@ const Home = () => {
               treatment at the spa.{" "}
             </p>
           </div>
-          <div className="grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-4 my-10 container mx-auto">
+          <div className="grid lg:grid-cols-3 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 my-10 container mx-auto">
             {hotels.map((hotel) => (
               <Hotel hotel={hotel} key={hotel.id}></Hotel>
             ))}
