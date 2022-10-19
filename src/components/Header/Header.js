@@ -54,19 +54,30 @@ const Header = () => {
                     Contact Us
                   </Link>
                 </li>
-
+                <li>
+                  <Link
+                    to="/profile"
+                    aria-label="About us"
+                    title="About us"
+                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                  >
+                    Profile
+                  </Link>
+                </li>
                 {user?.uid ? (
-                  <li>
-                    <Link
-                    onClick={handalLogOut}
-                      to="/"
-                      aria-label="About us"
-                      title="About us"
-                      className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                    >
-                      Log Out
-                    </Link>
-                  </li>
+                  <>
+                    <li>
+                      <Link
+                        onClick={handalLogOut}
+                        to="/"
+                        aria-label="About us"
+                        title="About us"
+                        className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                      >
+                        Log Out
+                      </Link>
+                    </li>
+                  </>
                 ) : (
                   <>
                     {" "}

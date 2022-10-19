@@ -1,4 +1,6 @@
 import Contact from "../components/Contact/Contact";
+import Profile from "../components/Profile/Profile";
+import PrivateRotutes from "../PrivateRoutes/PrivateRotutes";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Booking } = require("../components/Booking/Booking");
@@ -28,11 +30,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/booking",
-        element: <Booking></Booking>,
+        element: (
+          <PrivateRotutes>
+            <Booking></Booking>
+          </PrivateRotutes>
+        ),
       },
       {
-        path: '/about',
-        element: <Contact></Contact>
+        path: "/about",
+        element: <Contact></Contact>,
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRotutes>
+            <Profile></Profile>
+          </PrivateRotutes>
+        ),
       },
       {
         path: "/login",
