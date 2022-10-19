@@ -1,47 +1,106 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { AuthContext } from '../../context/UserContext/UserContext';
+ import { toast } from "react-toastify";
+ import "react-toastify/dist/ReactToastify.css";
 const Register = () => {
+    const [error, setError] = useState(null);
+    const { register, googleSignIn } = useContext(AuthContext);
+    const handalRegister = (e)=>{
+        e.preventDefault();
+        const form = e.target;
+        const fullname = form.fullname.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const confrimPassword = form.confirm_password.value;
+        console.log(fullname, email, password, confrimPassword);
+        if (password.length < 6) {
+          return setError("Atlist Password sholud be 6 Character");
+        }
+        if(password !== confrimPassword){
+            return setError('Password Not Matched')
+        }
+        
+        register(email, password)
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+            form.reset();
+            toast.success("Successfully Create account", {
+              autoClose: 500,
+            });
+        })
+        .catch(error => {
+            console.log(error);
+            setError(error.message);
+        })
+    }
+    const handalGoogle = () =>{
+        googleSignIn()
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+            toast.success('Successfully Register With Google', {autoClose: 500});
+        })
+        .catch(error =>{
+            console.log(error);
+            setError(error.message);
+        })
+    }
    return (
      <div>
        <div className="bg-gray-200 min-h-screen flex flex-col">
          <div className="container max-w-md mx-auto flex-1 flex flex-col items-center justify-center px-2">
            <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
              <h1 className="mb-8 text-3xl text-center">Register</h1>
-             <input
-               type="text"
-               className="block border border-gray-400 w-full p-3 rounded mb-4"
-               name="fullname"
-               placeholder="Full Name"
-             />
+             <form onSubmit={handalRegister}>
+               <input
+                 type="text"
+                 className="block border border-gray-400 w-full p-3 rounded mb-4"
+                 name="fullname"
+                 placeholder="Full Name"
+                 required
+               />
 
-             <input
-               type="text"
-               className="block border border-gray-400 w-full p-3 rounded mb-4"
-               name="email"
-               placeholder="Email"
-             />
+               <input
+                 type="text"
+                 className="block border border-gray-400 w-full p-3 rounded mb-4"
+                 name="email"
+                 placeholder="Email"
+                 required
+               />
 
-             <input
-               type="password"
-               className="block border border-gray-400 w-full p-3 rounded mb-4"
-               name="password"
-               placeholder="Password"
-             />
-             <input
-               type="password"
-               className="block border border-gray-400 w-full p-3 rounded mb-4"
-               name="confirm_password"
-               placeholder="Confirm Password"
-             />
-
+               <input
+                 type="password"
+                 className="block border border-gray-400 w-full p-3 rounded mb-4"
+                 name="password"
+                 placeholder="Password"
+                 required
+               />
+               <input
+                 type="password"
+                 className="block border border-gray-400 w-full p-3 rounded mb-4"
+                 name="confirm_password"
+                 placeholder="Confirm Password"
+                 required
+               />
+               <div>
+                 <p className="text-error py-3">{error}</p>
+               </div>
+               <button
+                 type="submit"
+                 className="w-full text-center py-3 rounded bg-primary text-white hover:bg-green-dark focus:outline-none my-1"
+               >
+                 Create Account
+               </button>
+             </form>
              <button
+             onClick={handalGoogle}
                type="submit"
-               className="w-full text-center py-3 rounded bg-primary text-white hover:bg-green-dark focus:outline-none my-1"
+               className="w-full text-center py-3 rounded btn btn-outline btn-primary focus:outline-none my-1"
              >
-               Create Account
+               Sign In With Google
              </button>
-
              <div className="text-center text-sm text-grey-dark mt-4">
                By signing up, you agree to the
                <Link

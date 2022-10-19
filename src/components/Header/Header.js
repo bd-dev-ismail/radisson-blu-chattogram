@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo1 from '../../assets/logos/logo1.svg';
+import { AuthContext } from '../../context/UserContext/UserContext';
+ import { toast } from "react-toastify";
+ import "react-toastify/dist/ReactToastify.css";
 const Header = () => {
      const [isMenuOpen, setIsMenuOpen] = useState(false);
+     const { user, logOut } = useContext(AuthContext);
+     const handalLogOut = () => {
+        logOut()
+        .then(()=>{
+          toast.error('Log Out done', {autoClose: 500});
+        })
+        .catch(error=>console.error(error));
+     };
     return (
       <div className=" sticky top-0 z-10">
         <div className="bg-primary">
@@ -22,6 +33,7 @@ const Header = () => {
                     Home
                   </Link>
                 </li>
+
                 <li>
                   <Link
                     to="/booking"
@@ -42,26 +54,44 @@ const Header = () => {
                     Contact Us
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    to="/login"
-                    aria-label="About us"
-                    title="About us"
-                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                  >
-                    Log In
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/register"
-                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                    aria-label="Sign up"
-                    title="Sign up"
-                  >
-                    Register
-                  </Link>
-                </li>
+
+                {user?.uid ? (
+                  <li>
+                    <Link
+                    onClick={handalLogOut}
+                      to="/"
+                      aria-label="About us"
+                      title="About us"
+                      className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                    >
+                      Log Out
+                    </Link>
+                  </li>
+                ) : (
+                  <>
+                    {" "}
+                    <li>
+                      <Link
+                        to="/login"
+                        aria-label="About us"
+                        title="About us"
+                        className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                      >
+                        Log In
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/register"
+                        className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                        aria-label="Sign up"
+                        title="Sign up"
+                      >
+                        Register
+                      </Link>
+                    </li>
+                  </>
+                )}
               </ul>
               <div className="lg:hidden">
                 <button
